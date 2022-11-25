@@ -1,3 +1,5 @@
+use std::fmt::format;
+
 #[derive(Debug)]
 struct Rectangle {
     width: usize,
@@ -12,6 +14,10 @@ impl Rectangle {
 
 pub fn add_two(a: i32) -> i32 {
     a + 2
+}
+
+pub fn greeting(name: &str) -> String {
+    format!("Hello {}!", name)
 }
 
 #[cfg(test)]
@@ -48,5 +54,15 @@ mod tests {
 
     fn it_adds_two() {
         assert_eq!(7, add_two(5))
+    }
+
+    #[test]
+    fn greeting_contains_name() {
+        let result = greeting("Jen");
+        assert!(
+            result.contains("Jen"),
+            "Greeting did not contain name, value was `{}`",
+            result
+        );
     }
 }
